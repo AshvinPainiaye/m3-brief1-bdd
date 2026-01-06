@@ -1,0 +1,4 @@
+SQLAlchemy
+python-dotenv
+alembic
+psycopg2-binary
