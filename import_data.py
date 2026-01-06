@@ -65,3 +65,7 @@ def main():
         db.commit()
 
     print(f"Import OK (Ajoutées : {client_add})")
+
+
+if __name__ == "__main__":
+    main()

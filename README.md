@@ -32,6 +32,11 @@ Copier le fichier .env.base, le renommer en .env, puis modifier la variable de c
 alembic upgrade head
 ```
 
+### Importer les données en base
+``` bash
+python import_data.py
+```
+
 ### Démarrer FastAPI
 ``` bash
 fastapi dev api.py
