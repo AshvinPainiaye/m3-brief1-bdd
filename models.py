@@ -42,37 +42,33 @@ class Client(Base):
     montant_pret = Column(Float)
 
 
-class Region(Base):
-    __tablename__ = 'regions'
+class Sexe(Base):
+    __tablename__ = 'sexes'
     
     id = Column(Integer, primary_key=True)
-    nom = Column(String)
-
-    clients = relationship("Client", back_populates="region")
+    nom = Column(String, unique=True)
+    clients = relationship("Client", back_populates="sexe")
 
 
 class NiveauEtude(Base):
     __tablename__ = 'niveau_etudes'
     
     id = Column(Integer, primary_key=True)
-    nom = Column(String)
-
+    nom = Column(String, unique=True)
     clients = relationship("Client", back_populates="niveau_etude")
+
+
+class Region(Base):
+    __tablename__ = 'regions'
+    
+    id = Column(Integer, primary_key=True)
+    nom = Column(String, unique=True)
+    clients = relationship("Client", back_populates="region")
 
 
 class SituationFamiliale(Base):
     __tablename__ = 'situations_familiales'
     
     id = Column(Integer, primary_key=True)
-    nom = Column(String)
-
+    nom = Column(String, unique=True)
     clients = relationship("Client", back_populates="situation_familiale")
-
-
-class Sexe(Base):
-    __tablename__ = 'sexes'
-    
-    id = Column(Integer, primary_key=True)
-    nom = Column(String)
-
-    clients = relationship("Client", back_populates="sexe")

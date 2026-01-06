@@ -1,8 +1,8 @@
 """init
 
-Revision ID: c7f802a87863
+Revision ID: 73dfca039ee7
 Revises: 
-Create Date: 2026-01-06 13:17:59.365966
+Create Date: 2026-01-06 14:00:51.020689
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'c7f802a87863'
+revision: str = '73dfca039ee7'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -24,22 +24,26 @@ def upgrade() -> None:
     op.create_table('niveau_etudes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('nom', sa.String(), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('nom')
     )
     op.create_table('regions',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('nom', sa.String(), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('nom')
     )
     op.create_table('sexes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('nom', sa.String(), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('nom')
     )
     op.create_table('situations_familiales',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('nom', sa.String(), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('nom')
     )
     op.create_table('clients',
     sa.Column('id', sa.Integer(), nullable=False),
