@@ -1,4 +1,5 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, Query
+from sqlalchemy import func
 from sqlalchemy.orm import Session
 from db import get_db
 from models import Client, NiveauEtude, Sexe, Region, SituationFamiliale
@@ -8,8 +9,18 @@ from datetime import date
 app = FastAPI()
 
 @app.get('/clients/', tags=["clients"])
-async def list_clients(db: Session = Depends(get_db)):
-    return db.query(Client).all()
+async def list_clients(db: Session = Depends(get_db), page: int = Query(1, ge=1, description="Numéro de page"), page_size: int = Query(50, ge=1, le=200, description="Nombre d'éléments par page")):
+    total = db.query(func.count(Client.id)).scalar()
+    offset = (page - 1) * page_size
+
+    items = db.query(Client).offset(offset).limit(page_size).all()
+    return {
+        "page": page,
+        "page_size": page_size,
+        "total": total,
+        "pages": (total + page_size - 1) // page_size,
+        "items": items,
+    }
 
 
 class ClientPayload(BaseModel):
