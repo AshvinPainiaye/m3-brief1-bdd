@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Depends, HTTPException, Query
 from sqlalchemy import func
 from sqlalchemy.orm import Session
-from db import get_db
-from models import Client, NiveauEtude, Sexe, Region, SituationFamiliale
+from app.db import get_db
+from app.models import Client, NiveauEtude, Sexe, Region, SituationFamiliale
 from pydantic import BaseModel
 from datetime import date
 

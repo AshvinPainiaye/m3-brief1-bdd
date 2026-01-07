@@ -39,5 +39,12 @@ python import_data.py
 
 ### Démarrer FastAPI
 ``` bash
-fastapi dev api.py
+fastapi dev app/api.py
+```
+
+### Modèle de réseau de neuronnes
+Possibilité de relancer un entrainement en modifiant la variable train à True
+
+``` bash
+python -m ml.main
 ```

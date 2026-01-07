@@ -1,7 +1,7 @@
 import pandas as pd
 from sqlalchemy.orm import Session
-from db import SessionLocal
-from models import Client, NiveauEtude, Sexe, Region, SituationFamiliale
+from app.db import SessionLocal
+from app.models import Client, NiveauEtude, Sexe, Region, SituationFamiliale
 
 CSV_PATH = "data_cleaned.csv"
 

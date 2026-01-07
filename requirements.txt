@@ -4,3 +4,9 @@ alembic
 psycopg2-binary
 fastapi
 fastapi[standard]
+scikit-learn
+tensorflow
+joblib
+matplotlib
+pandas
+numpy
