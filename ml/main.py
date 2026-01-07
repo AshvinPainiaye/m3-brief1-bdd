@@ -5,7 +5,7 @@ from sqlalchemy.orm import joinedload
 from ml.modules.preprocess import preprocessing, split
 from ml.models.models import create_nn_model, train_model, model_predict
 from ml.modules.evaluate import evaluate_performance
-from ml.modules.print_draw import print_data
+from ml.modules.print_draw import print_data, draw_loss
 from app.db import SessionLocal
 from app.models import Client
 
@@ -74,7 +74,7 @@ if train:
     
     # entraîner le modèle
     model, hist = train_model(model, X_train, y_train, X_val=X_test, y_val=y_test)
-    # draw_loss(hist)
+    draw_loss(hist)
     
     # sauvegarder le modèle
     joblib.dump(model, join('ml', 'models', model_filename))
@@ -94,4 +94,3 @@ y_pred = model_predict(loaded_model, X_test)
 # mesurer les performances MSE, MAE et R²
 perf = evaluate_performance(y_test, y_pred)
 print_data(perf)
-
